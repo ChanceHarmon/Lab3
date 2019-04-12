@@ -1,0 +1,29 @@
+
+body {
+  width: 500px;
+  background-color:rgb(228, 228, 179);
+}
+header {
+  margin: 0px auto;
+  font-size: 45px;
+  position: relative;
+}
+select {
+  /* position: ;
+  left: 790px;
+  top: 65px; */
+}
+img {
+  width: 250px;
+  height: 300px;
+  margin: 20px 20px 10px 20px;
+  /* float: left; */
+
+}
+
+ p {
+   margin-bottom: 25px;
+ }
+ h2 {
+   font-size: 30px;
+ }
