@@ -49,19 +49,39 @@ Horn.populateFilter = () => {
   });
   filterKeywords.sort();
   filterKeywords.forEach(keyword => {
-    let optionTag = `<option value="${keyword}'>${keyword}</option>`;
-    $('select').append(optionTag);
+    let optionTag = `<option value="${keyword}">${keyword}</option>`;
+    console.log("option tag", optionTag )
+    $('#selectOne').append(optionTag);
+  });
+};
+Horn.handleFilter = () => {
+  $('select').on('change', function () {
+    let $selected = $(this).val();
+    if ($selected !== 'default') {
+      $('div').hide();
+    
+      Horn.allHorns.forEach(image => {
+    if ($selected === image.keyword) {
+      $(`div[class="${$selected}"]`).addClass('filtered').fadeIn();
+    }
+  });
+  
+  $(`option[value=${$selected}]`).fadeIn();
+  } else {
+  $('div').removeClass('filtered').fadeIn();
+  $(`option[value=${$selected}]`).fadeIn();
+}
   });
 };
 
-Horn.loadHorns = () => {
-  Horn.allHorns.forEach(horn => horn.render())
-}
-$('select').on('change', function() {
-  let $selection = $(this).val();
-  console.log($selection)
-  $('div').hide()
-  $(`div[class="${$selection}"]`).show()
-})
+// Horn.loadHorns = () => {
+//   Horn.allHorns.forEach(horn => horn.render())
+// }
+// $('select').on('change', function() {
+//   let $selection = $(this).val();
+//   console.log($selection)
+//   $('div').hide()
+//   $(`div[class="${$selection}"]`).show()
+// })
 
 $(() => Horn.readJson());
