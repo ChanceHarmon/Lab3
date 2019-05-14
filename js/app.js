@@ -1,56 +1,56 @@
 'use strict';
 
-function Animal(animal) {
-  for (let key in animal) {
-    this[key] = animal[key];
+function Horn(horn) {
+  for (let key in horn) {
+    this[key] = horn[key];
   }
 }
 
-Animal.allAnimals = [];
-Animal.keywords = [];
+Horn.allHorns = [];
+Horn.keywords = [];
 
-Animal.prototype.toHtml = function () {
-  let $template = $('#animal-template').html();
+Horn.prototype.toHtml = function () {
+  let $template = $('#horn-template').html();
   let compiledTemplate = Handlebars.compile($template);
   return compiledTemplate(this);
 };
 
-Animal.readJson = ($value) => {
+Horn.readJson = ($value) => {
   $.get(`data/${$value}.json`, 'json')
     .then(data => {
       data.forEach(item => {
-        Animal.allAnimals.push(new Animal(item));
+        Horn.allHorns.push(new Horn(item));
       });
     })
     .then(populateKeywords)
     .then(sortKeywords)
-    .then(Animal.loadAnimals)
-    .then(Animal.loadKeyword);
+    .then(Horn.loadHorns)
+    .then(Horn.loadKeyword);
 }
 
 function populateKeywords() {
-  Animal.allAnimals.forEach(animal => {
-    if (!Animal.keywords.includes(animal.keyword)) {
-      Animal.keywords.push(animal.keyword)
+  Horn.allHorns.forEach(horn => {
+    if (!Horn.keywords.includes(horn.keyword)) {
+      Horn.keywords.push(horn.keyword)
     }
   })
 }
 
 function sortKeywords() {
-  Animal.keywords.sort()
+  Horn.keywords.sort()
 }
 
-Animal.loadAnimals = () => {
-  Animal.allAnimals.forEach(animal => {
-    $('#animals').append(animal.toHtml())
+Horn.loadHorns = () => {
+  Horn.allHorns.forEach(horn => {
+    $('#horns').append(horn.toHtml())
   });
 };
 
-$(() => Animal.readJson($value));
+$(() => Horn.readJson($value));
 let $value = 'page-1';
 
-Animal.loadKeyword = () => {
-  Animal.keywords.forEach((keyword) => {
+Horn.loadKeyword = () => {
+  Horn.keywords.forEach((keyword) => {
     $('#filter').append(`<option class="filter-remove" value="${keyword}">${keyword}</option>`);
   })
 };
@@ -65,7 +65,7 @@ $('#click').on('change', function() {
   $('.filter-remove').remove();
   $('div').remove();
   let $value = $(this).val();
-  Animal.allAnimals = [];
-  Animal.keywords = [];
-  Animal.readJson($value);
+  Horn.allHorns = [];
+  Horn.keywords = [];
+  Horn.readJson($value);
 });
