@@ -1,0 +1,44 @@
+#photo-template {
+  border: solid 2px black;
+  background-color: rgb(255, 170, 101);
+  border-radius: 25px;
+  text-align: center;
+  width: 400px;
+  height: 500px;
+  margin-bottom: 30px;
+}
+
+img {
+  width: 320px;
+  height: 320px;
+  object-fit: contain;
+  border: solid 1px grey;
+  background-color: white;
+  border-radius: 25px;
+}
+
+#description {
+  font-family: 'Dokdo', cursive;
+  font-size: 25px;
+}
+
+#keyword {
+  font-family: 'Anton', sans-serif;
+  font-size: 20px;
+}
+
+h2 {
+  padding: 20px 0px;
+  font-family: 'Anton', sans-serif;
+  font-size: 20px;
+}
+
+select {
+  font-size: 15px;
+  padding: 20px 0px;
+}
+
+h1 {
+  font-size: 50px;
+  padding: 20px 0px;
+}
